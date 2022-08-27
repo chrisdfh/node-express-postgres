@@ -1,0 +1,18 @@
+GET http://localhost:3000 HTTP/1.1
+
+###
+
+@qqq = qqqqq
+
+
+POST  http://localhost:3000/tag HTTP/1.1
+Content-Type: application/json
+
+{
+    "ciaopr":"1",
+    "tag_cod":"Tag",
+    "tag_desc":"segundo del tag"
+}
+
+###
+DELETE   http://localhost:3000/tag/2Tag HTTP/1.1

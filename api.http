@@ -1,0 +1,87 @@
+#Variables Locales
+@microHostname = http://localhost:3000
+@restHostname = http://localhost:3000
+@authToken = Basic ZGlhcmlvX3RlbXA6NTQwNzUwZWI2ZjE2NDExOWU0MjZlYTY0OWFkZDVkMjE=
+@nroNota = 1500
+@seccionCod = NT-HOM
+@searchQuery = fea
+
+
+
+
+
+
+############### NOTAS #######################
+
+# @prompt nroNota Número de nota a consultar
+# @name Consulta de Notas por microservicio
+GET {{microHostname}}/nota/nronota2/1/{{nroNota}} HTTP/1.1
+
+###
+# @name CConsulta de Notas por cxrestful
+# @prompt nroNota Número de nota a consultar
+GET {{restHostname}}/nota/nronota2/1/{{nroNota}} HTTP/1.1
+Content-Type: application/json
+Authorization: {{authToken}}
+tipo_usuario: PROVEEDOR
+ciaopr:1
+###
+
+
+
+
+
+
+############### PORTADA ########################
+
+# @name Consulta de Portada por microservicio
+GET {{microHostname}}/pagina/1/{{seccionCod}} HTTP/1.1
+###
+
+#@name Consulta de Portada por cxrestful
+GET {{restHostname}}/pagina/1/{{seccionCod}} HTTP/1.1
+Content-Type: application/json
+Authorization: {{authToken}}
+tipo_usuario: PROVEEDOR
+ciaopr:1
+###
+
+
+
+
+
+
+
+
+
+
+
+
+############### BUSQUEDA ########################
+
+# @name Búsqueda por microservicio
+# @prompt searchQuery Texto de búsqueda
+POST {{microHostname}}/api
+
+{
+    "ciaopr": "1",
+    "titulo": "{{searchQuery}}",
+    "seccion_cod1": null
+}
+###
+
+# @name Búsqueda por cxrestful
+# @prompt searchQuery Texto de búsqueda
+POST {{restHostname}}/
+Content-Type: application/json
+Authorization: {{authToken}}
+tipo_usuario: PROVEEDOR
+ciaopr:1
+
+{
+    "ciaopr": "1",
+    "titulo": "{{searchQuery}}",
+    "seccion_cod1": null
+}
+###
+
