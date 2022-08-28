@@ -34,15 +34,16 @@ const getUser = (req,res)=>{
                 resJson.tag_cod,
                 resJson.tag_desc
             ) 
-            res.status(200).send(`Leí ${p.tag_cod}, ${p.tag_desc}`)
+            res.status(200).send(`Leí ${p.tag_cod}, ${p.tag_desc}` )
         } else {
             res.status(404).send(`No existe ${codnip}`)
         }
     })
 }
 const createUser = (req,res)=>{
+    console.log('entrando con la data de ')
     const {ciaopr,tag_cod,tag_desc} = req.body
-
+    console.log(req.body)
     pool.query('insert into kns_tag (ciaopr,tag_cod,tag_desc) values ($1,$2,$3) returning *',[ciaopr,tag_cod,tag_desc],(err,results)=> {
         if(err){
             throw err

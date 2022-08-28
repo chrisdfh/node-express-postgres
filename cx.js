@@ -1,8 +1,12 @@
 var express = require('express')
 var bodyParser = require('body-parser')
+const morgan = require("morgan");
 const { response } = require('express')
+const swaggerUi =require('swagger-ui-express') 
 require('dotenv').config()
 const crud = require('./crud')
+// const YAML = require('yamljs')
+const docs = require('./docs')
 
 
 
@@ -15,10 +19,8 @@ app.use(
         extended:true
     })
 )
+app.use(morgan("dev"));
 
-app.get('/', (req, res) => {
-    res.status(404).send('No encontrado el endpoint')
-})
 
 app.get('/tag',crud.getUsers)
 app.get('/tag/:tag_cod',crud.getUser)
@@ -26,6 +28,7 @@ app.post('/tag',crud.createUser)
 app.put('/tag/:tag_cod',crud.updateUser)
 app.delete('/tag/:tag_cod',crud.deleteUser)
 
+app.use('/',swaggerUi.serve,swaggerUi.setup(docs));
 
 console.log(process.env.HOST)
 app.listen(PORT, () => {
